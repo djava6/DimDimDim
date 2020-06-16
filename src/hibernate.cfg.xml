@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
+		<property name="connection.url">jdbc:hsqldb:file:db/dimdimdim</property>
+		<property name="connection.username">sa</property>
+		<property name="connection.password"></property>
+		<property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+
+		<!-- <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+			<property name="connection.url">jdbc:mysql://localhost/papelaria?user=root</property>
+			<property name="dialect">org.hibernate.dialect.MySQLDialect</property> -->
+
+		<!-- <property name="connection.driver_class">org.postgresql.Driver</property>
+			<property name="connection.url">jdbc:postgresql://localhost/papelaria</property>
+			<property name="connection.username">postgres</property>
+			<property name="connection.password">cdmsql</property>
+			<property name="connection.pool_size">10</property>
+			<property name="show_sql">false</property>
+			<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> -->
+
+		<!--  	<property name="hbm2ddl.auto">create</property>
+		<property name="show_sql">true</property> -->
+
+		<property name="current_session_context_class">thread</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+		<mapping resource="Renda.hbm.xml" />
+		<mapping resource="Tipo.hbm.xml" />
+		<mapping resource="Despesa.hbm.xml" />
+		<mapping resource="Usuario.hbm.xml" />
+
+	</session-factory>
+
+</hibernate-configuration>

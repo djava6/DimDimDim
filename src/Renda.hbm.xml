@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="br.com.useinet.vo.Renda" table="RENDA">
+
+		<id name="id" column="RENDA_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="nome"
+			not-null="true"
+			unique="true" />
+			
+		<property name="valor"
+			not-null="true">
+			<column name="valor" sql-type="NUMERIC(12, 2)"/>
+		</property>
+		
+		<property name="total" formula="( SELECT SUM (re.valor) FROM Renda re )"/>
+
+	</class>
+
+</hibernate-mapping>

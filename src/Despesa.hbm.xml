@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="br.com.useinet.vo.Despesa" table="DESPESA">
+
+		<id name="id" column="DESPESA_ID">
+			<generator class="native" />
+		</id>
+
+		<natural-id mutable="true">
+			<property name="nome" />
+			<many-to-one name="tipo" column="TIPO_ID" class="br.com.useinet.vo.Tipo" />
+		</natural-id>
+
+		<property name="valor" not-null="true">
+			<column name="valor" sql-type="NUMERIC(12, 2)" />
+		</property>
+
+		<property name="data" not-null="true" >
+			<column name="data" sql-type="DATE" />
+		</property>
+
+		<property name="total" formula="( SELECT SUM (de.valor) FROM Despesa de )" />
+
+	</class>
+
+</hibernate-mapping>
