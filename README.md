@@ -1,2 +1,2 @@
 # DimDimDim
-Software para controle financeiro
+Software para controle financeiro em Java Swing e Hibernate.
