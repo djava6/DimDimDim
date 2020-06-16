@@ -1,0 +1,50 @@
+<project name="DimDimDim" default="executa">
+
+	<property name="sourcedir" value="${basedir}/src" />
+	<property name="targetdir" value="${basedir}/bin" />
+	<property name="librarydir" value="${basedir}/lib" />
+	<property name="dist" value="dist" />
+
+	<path id="libraries">
+		<fileset dir="${librarydir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="limpa">
+		<delete dir="${targetdir}" />
+		<delete dir="${dist}" />
+	</target>
+	
+	<target name="inicia">
+		<mkdir dir="${targetdir}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	<target name="compila" depends="inicia">
+		<javac srcdir="${sourcedir}" destdir="${targetdir}" classpathref="libraries" />
+	</target>
+
+	<target name="copia" depends="compila">
+		<copy todir="${targetdir}">
+			<fileset dir="${sourcedir}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="dist" depends="copia">
+		<jar jarfile="${dist}/dimdimdim.jar" basedir="${targetdir}">
+			<manifest>
+				<attribute name="Main-Class" value="br.com.useinet.main.DimDimMain" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="executa" depends="copia">
+		<java fork="true" classname="br.com.useinet.main.DimDimMain" classpathref="libraries">
+			<classpath path="${targetdir}" />
+		</java>
+	</target>
+
+</project>
